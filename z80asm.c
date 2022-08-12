@@ -2803,8 +2803,9 @@ int
 main (int argc, char **argv)
 {
   /* default include file location */
-// TODO: replace!  
-//  add_include ("/usr/share/z80asm/headers/");
+/* TODO: replace! 
+*  add_include ("/usr/share/z80asm/headers/");
+*/
   parse_commandline (argc, argv);
   if (verbose >= 1)
     fprintf (stderr, "Assembling....\n");
