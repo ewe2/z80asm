@@ -1,5 +1,6 @@
 # Makefile for the Z80 assembler by shevek
 # Copyright 2002-2007  Bas Wijnen
+# Copyright 2022 Sean Dwyer
 #
 # This file is part of z80asm.
 #
@@ -16,8 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-CC = gcc
-CFLAGS = -O0 -Wall -Wwrite-strings -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wnested-externs -Winline -pedantic -ansi -Wshadow -ggdb3 -W -Ignulib
+# choose your system, uncomment the one you want:
+#
+# Z80ASM - original headers folder
+# MSX    - same but in msx folder
+
+cc = gcc
+#CFLAGS = -DZ80ASM
+CFLAGS = -DMSX
+
+CFLAGS += -O0 -Wall -Wwrite-strings -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wnested-externs -Winline -pedantic -ansi -Wshadow -ggdb3 -W -Ignulib
 SHELL = /bin/bash
 VERSION ?= $(shell echo -n `cat VERSION | cut -d. -f1`. ; echo $$[`cat VERSION | cut -d. -f2` + 1])
 

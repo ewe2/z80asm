@@ -2,6 +2,7 @@
 
    Copyright (C) 2002-2009 Bas Wijnen <wijnen@debian.org>
    Copyright (C) 2005 Jan Wilmans <jw@dds.nl>
+   Copyright (c) 2022 Sean Dwyer <ewetoo@gmail.com>
 
    This file is part of z80asm.
 
@@ -20,6 +21,13 @@
 */
 
 #include "z80asm.h"
+
+/* these are our system compatibilty macros used in main() */
+#if defined Z80ASM
+  #define SYSTEM_INCLUDES "/usr/share/z80asm/headers/"
+#elif defined MSX
+  #define SYSTEM_INCLUDES "/usr/share/z80asm/headers/msx/"
+#endif
 
 /* global variables */
 /* mnemonics, used as argument to indx() in assemble */
@@ -2803,9 +2811,7 @@ int
 main (int argc, char **argv)
 {
   /* default include file location */
-/* TODO: replace! 
-*  add_include ("/usr/share/z80asm/headers/");
-*/
+  add_include (SYSTEM_INCLUDES);
   parse_commandline (argc, argv);
   if (verbose >= 1)
     fprintf (stderr, "Assembling....\n");
